@@ -400,3 +400,13 @@ It's time to show off your creation to the world! Things you might want to do ar
 
 ## Common question
 How do I turn off my SQL logger? `ruby # in config/environment.rb add this line: ActiveRecord::Base.logger = nil`
+
+
+
+
+#User Story
+#1. User should be able to write a review for a movie
+#2. User should be able to view all of the reviews they've #written
+#3. User should be able to enter movie and see all of the #reviews for that movie.
+#4. User should be able to edit their review for that movie
+#5. User should be able to delete a review of theirs
