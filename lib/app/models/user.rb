@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
 
     def write_comments
         Review.create(movie_id: movie, user_id: self, movie_rating: movie_rating, review_commenr: review_comment)
+    end
 
 
 
