@@ -5,15 +5,19 @@ class CommandLineInterface
     
 
     def greet 
-        user = User.login
-        if user
-            puts "Welcome to Filmbuff, your review is important to us"
-            puts " Here the list of all the movies, which movie would you like to write a review?"
-            Movie.all.each do |movie|
-                puts movie.title
-            end 
-            movie_title= gets.chomp
-            Movie.find_by(title: movie_title)
-    end
+        puts "Welcome to Filmbuff, your review is important to us"
+    end 
 
+    def menu
+        puts "What would you like to do?"
+        puts "Put 1 to write, edit or delete a review!"
+        puts "Put 2 to look up a movie!"
+        puts "Put 3 to look at your reviews!"
+
+        user_input= gets.chomp
+    end 
+    
+
+
+        
 end
