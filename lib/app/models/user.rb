@@ -7,13 +7,23 @@ class User < ActiveRecord::Base
 
 
      def self.login
-          puts "Hey! Welcome to FilmBuff, your opinion matters to film!"
-          puts "Enter your username:"
-          username = gets.chomp
-          puts "Enter your password:"
-          password = gets.chomp
-          user = User.find_by(username: username, password: password)
-      end
+          puts "Welcome to Filmbuff, your reviews is important to us"
+          puts "To login please, Enter your username"
+          username= gets.chomp
+          puts "Enter your password"
+          password= gets.chomp
+          user=User.find_by(username: username, password: password)
+      end 
+      def self.sign_up
+          puts "Welcome to Filmbuff, your review is important to us"
+          puts " please enter your username"
+          username= gets.chomp
+          puts " Enter password"
+          password= gets.chomp 
+           user= User.create(username: username, password: password)
+      end 
+      def write_comments
+          Review.create(movie_id: movie, user_id: self, movie_rating: movie_rating, review_commenr: review_comment)
 
 
 
