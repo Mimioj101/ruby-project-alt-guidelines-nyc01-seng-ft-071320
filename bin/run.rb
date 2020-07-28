@@ -5,3 +5,4 @@ cli.greet
 
 User.login
 cli.menu
+U

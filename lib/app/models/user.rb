@@ -14,6 +14,13 @@ class User < ActiveRecord::Base
         user = User.find_by(username: username, password: password)
     end 
 
+    
+
+
+
+    
+
+
 
     # def self.sign_up
     #     puts "Welcome to Filmbuff, your review is important to us"

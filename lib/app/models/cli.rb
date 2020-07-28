@@ -14,8 +14,14 @@ class CommandLineInterface
         puts "Put 2 to look up a movie!"
         puts "Put 3 to look at your reviews!"
 
-        user_input= gets.chomp
-    end 
+    #     user_input= gets.chomp
+    #     if user_input == 2
+    #         movies.title
+    #     if user_input== 3
+    #        puts  user.movie_rating && user.review_comment
+    #     end 
+
+    # end 
     
 
 
