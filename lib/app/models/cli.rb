@@ -3,11 +3,6 @@ require 'pry'
 class CommandLineInterface
 
     
-
-    def greet 
-        puts "Welcome to Filmbuff, your review is important to us"
-    end 
-
     def run 
         greet
         puts "Type in your username to login or signup:"
@@ -16,16 +11,12 @@ class CommandLineInterface
         password = gets.chomp
         user = User.find_or_create_by(username: username, password: password)
         menu(user)
-
-        # case user_input
-        # when "1"
-        #     user = User.signup
-        # when "2"
-        #     user = User.login
-        # end
-        # @user
-        # User.menu(user)
     end
+
+    def greet 
+        puts "Welcome to Filmbuff, your review is important to us"
+    end 
+
 
     def menu(user)
         puts "What would you like to do?"
@@ -56,7 +47,7 @@ class CommandLineInterface
         when "2"
             edit_review(user)
         when "3"
-            # User.delete_review
+            delete_review(user)
         else
            review_menu(user)
         end
@@ -86,12 +77,47 @@ class CommandLineInterface
                     review_comment = gets.chomp
                     Review.create(movie_id: new_mov.id, user_id: user.id, movie_rating: movie_rating, review_comment: review_comment)
                 end
-        puts "What a great review! Thanks so much for contributing to MovieBuff!"
+        puts "Your review is being published! Thanks so much for contributing to MovieBuff!"
         menu(user)
     end
 
-    def edit_review
-        
+    def edit_review(user)
+        puts "What is the title of the movie that you reviewed and want to edit?"
+        title = gets.chomp
+        movie_id = Movie.where(title: title).ids
+        review = Review.find_by(movie_id: movie_id, user_id: user.id)
+        puts "what would you like to update?"
+        puts "put 1 to update the movie rating"
+        puts "put 2 to update the review comment"
+        user_input = gets.chomp
+        case user_input
+        when "1"
+            puts "What would you like your updated rating to be?"
+            input = gets.chomp
+            review.update(movie_rating: input)
+        when "2"
+            puts "What would you like your updated review comment to be?"
+            input = gets.chomp
+            review.update(review_comment: input)
+        end
+    end
+
+    def delete_review(user)
+        puts "What is the title of the movie that you reviewed and want to delete?"
+        title = gets.chomp
+        movie_id = Movie.where(title: title).ids
+        review = Review.find_by(movie_id: movie_id, user_id: user.id)
+        puts "Are you sure you would like to delete your #{review.movie_rating} star review saying '#{review.review_comment}'? Y/N?"
+        user_input = gets.chomp
+        case user_input
+        when "Y"
+            Review.delete(review.id)
+            puts "Your review has been deleted. What else can we help you with?"
+            menu(user)
+        when "N"
+            puts "Changed your mind? Anything else we can help you with?"
+            menu(user)
+        end
     end
     
 
