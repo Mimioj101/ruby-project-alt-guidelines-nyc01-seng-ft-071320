@@ -58,7 +58,6 @@ class CommandLineInterface
         puts "What movie would you like to write a review for?"
             title = gets.chomp
             movie_id = Movie.where(title: title).ids
-            # movie = Movie.find_by(title: title)
                 if Movie.exists?(title: title)
                     puts "Awesome! Out of 5 stars, how many stars would you rate #{title}?"
                     movie_rating = gets.chomp
@@ -96,12 +95,14 @@ class CommandLineInterface
             puts "What would you like your updated rating to be?"
             input = gets.chomp
             review.update(movie_rating: input)
-            #NOT WORKING?
+            puts "Your review is now updated!"
+            menu
         when "2"
             puts "What would you like your updated review comment to be?"
             input = gets.chomp
             review.update(review_comment: input)
-            #NOT WORKING?
+            puts "Your review is now updated!"
+            menu
         end
     end
 
