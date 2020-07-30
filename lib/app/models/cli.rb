@@ -25,9 +25,7 @@ class CommandLineInterface
             puts "\n"
             puts "\n"
         puts "Put 1 to write, edit or delete a review!"
-        puts "\n"
         puts "Put 2 to look up a movie!"
-        puts "\n"
         puts "Put 3 to look at your reviews!"
         user_input = gets.chomp
         case user_input
@@ -42,10 +40,9 @@ class CommandLineInterface
     end
 
     def review_menu
+        puts "\n"
         puts "Put 1 to write a review!"
-        puts "\n"
         puts "Put 2 to edit a review!"
-        puts "\n"
         puts "Put 3 to delete a review."
         user_input = gets.chomp
         case user_input
@@ -62,11 +59,11 @@ class CommandLineInterface
 
 
     def write_review
+        puts "\n"
         puts "What movie would you like to write a review for?"
             title = gets.chomp
             puts "\n"
             movie = Movie.find_by(title: title)
-            # movie_id = Movie.where(title: title).ids
             if Movie.exists?(title: title)
                 puts "Awesome! Out of 5 stars, how many stars would you rate #{title}?"
                 movie_rating = gets.chomp
@@ -110,6 +107,7 @@ class CommandLineInterface
         user_input = gets.chomp
         case user_input
         when "1"
+            puts "\n"
             puts "What would you like your updated rating to be?"
             input = gets.chomp
             puts "\n"
@@ -151,18 +149,15 @@ class CommandLineInterface
 
 
     def search_movie
+        puts "\n"
         puts "Enter the title of the movie you would like to view:"
         title = gets.chomp
         puts "\n"
-        # movie_id = Movie.where(title: title).ids
         movie = Movie.find_by(title: title)
-        # review = Review.where(movie_id: movie.id)
-        # movie.each {|ele| puts  "Movie: #{movie.title}, Genre: #{movie.genre}, Length: #{movie.length}, Rating: #{review.movie_rating}, Review: #{review.review_comment}"}
         puts  "Movie: #{movie.title}, Genre: #{movie.genre}, Length: #{movie.length}"
         puts "\n"
         menu
     end
-    #Erroring out, breaking app, not puts-ing string
 
 
     def see_my_reviews
@@ -172,10 +167,11 @@ class CommandLineInterface
                 mov = review.movie_id
                 movie = Movie.find(mov)
                 puts "Movie: #{movie.title}, Rating: #{review.movie_rating}, Review: #{review.review_comment}"
-                puts "Bringing you back to the main menu now!"
+                puts "\n"
             end
         end
-        # menu
+        puts "Bringing you back to the main menu now!"
+        menu
     end
 
 
