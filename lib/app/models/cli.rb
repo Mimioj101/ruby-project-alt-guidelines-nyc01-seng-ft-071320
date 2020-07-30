@@ -16,17 +16,35 @@ class CommandLineInterface
 
     def greet 
         puts "Welcome to Filmbuff, your review is important to us"
+        puts "                  ©@©©@©            "
+        puts "                 @@©@©©@©           "
+        puts "              ©©@©©@@©@©@           "
+        puts "            |\@©@©©@©@@@@/|         "
+        puts "            |         | | |         "
+        puts "            | ========| | |         "
+        puts "            | POPCORN | | |         "
+        puts "      @     | ========| | |  @      "
+        puts "   @ @@@    |_________|_|_| @@@@    "
+        puts "                                    "
     end 
 
 
     def menu
         puts "\n"
-        puts "What would you like to do?"
-            puts "\n"
-            puts "\n"
-        puts "Put 1 to write, edit or delete a review!"
-        puts "Put 2 to look up a movie!"
-        puts "Put 3 to look at your reviews!"
+        puts "                          _______________________I____________________"
+        puts "                         ( __________________________________________()"
+        puts "                       _.-'|                                         ||"
+        puts "                   _.-'   || Put 1 to write, edit or delete a review ||"
+        puts "  ______       _.-'       ||                                         ||"
+        puts " |      |_ _.-'           ||       Put 2 to look up a movie          ||"
+        puts " |      |_|_              ||                                         ||"
+        puts " |______|   `-._          ||    Put 3 to look at your reviews!       ||"
+        puts "    /|          `-._      ||                                         ||"
+        puts "   /  |             `-._  ||                THANK YOU                ||"
+        puts "  /    |                `-.I_________________________________________||"
+        puts " /      |                 ---------------------------------------------"
+        puts "/________|________________________|__________________________|_________"
+        puts "\n"
         user_input = gets.chomp
         case user_input
         when "1"
@@ -154,7 +172,13 @@ class CommandLineInterface
         title = gets.chomp
         puts "\n"
         movie = Movie.find_by(title: title)
+        puts "\n"
+        # review = Review.find_by(movie_id: movie.id)
         puts  "Movie: #{movie.title}, Genre: #{movie.genre}, Length: #{movie.length}"
+        movie.reviews.each do |review|
+            puts "Rating:#{review.movie_rating}, Review:#{review.review_comment}, Author: #{review.user.username}"
+            puts "\n"
+        end
         puts "\n"
         menu
     end
