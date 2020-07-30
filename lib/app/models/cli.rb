@@ -28,9 +28,9 @@ class CommandLineInterface
         when "1"
             review_menu(user)
         when "2"
-            #search_movie(user)
+            search_movie
         when "3"
-            #view_own_reviews(user)
+            see_my_reviews(user)
         else
             menu(user)
         end
@@ -81,6 +81,7 @@ class CommandLineInterface
         menu(user)
     end
 
+
     def edit_review(user)
         puts "What is the title of the movie that you reviewed and want to edit?"
         title = gets.chomp
@@ -95,10 +96,12 @@ class CommandLineInterface
             puts "What would you like your updated rating to be?"
             input = gets.chomp
             review.update(movie_rating: input)
+            #NOT WORKING?
         when "2"
             puts "What would you like your updated review comment to be?"
             input = gets.chomp
             review.update(review_comment: input)
+            #NOT WORKING?
         end
     end
 
@@ -112,12 +115,26 @@ class CommandLineInterface
         case user_input
         when "Y"
             Review.delete(review.id)
+            #NOT WORKING?
             puts "Your review has been deleted. What else can we help you with?"
             menu(user)
         when "N"
             puts "Changed your mind? Anything else we can help you with?"
             menu(user)
         end
+    end
+
+
+    def search_movie
+        puts "Enter the title of the movie you would like to view:"
+        user_input = gets.chomp
+        movie_id = Movie.where(title: user_input).ids
+        puts Review.all.where(movie_id: movie_id)
+    end
+
+
+    def see_my_reviews(user)
+        puts Review.all.where(user_id: user.id)
     end
     
 
