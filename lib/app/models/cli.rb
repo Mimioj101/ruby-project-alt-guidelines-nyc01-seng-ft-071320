@@ -106,7 +106,7 @@ class CommandLineInterface
                     puts "\n"
                     Review.create(movie_id: new_mov.id, user_id: @user.id, movie_rating: movie_rating, review_comment: review_comment)
                 end
-        puts "Your review is being published! Thanks so much for contributing to MovieBuff!"
+        puts "Your review is being published! Thanks so much for contributing to FilmBuff!"
         menu
     end
 
